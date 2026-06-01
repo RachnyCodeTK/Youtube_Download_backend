@@ -10,6 +10,14 @@ app.use(cors());
 app.use(express.json());
 
 const downloadPath = path.join(__dirname, "downloads");
+const ffmpeg = require('ffmpeg-static');
+const fluentFfmpeg = require('fluent-ffmpeg'); // (បើលោកមានប្រើ library នេះ)
+
+// ប្រាប់ទៅប្រព័ន្ធឱ្យស្គាល់ផ្លូវទៅកាន់ FFmpeg ថ្មី
+if (ffmpeg) {
+  fluentFfmpeg.setFfmpegPath(ffmpeg);
+  console.log("FFmpeg path set successfully to:", ffmpeg);
+}
 
 if (!fs.existsSync(downloadPath)) {
   fs.mkdirSync(downloadPath);
